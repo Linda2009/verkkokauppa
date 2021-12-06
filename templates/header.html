@@ -1,0 +1,222 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<!-- ------------------------------------------------------------------------------------------------------------------------------ -->
+
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+ 
+} 
+
+body{
+  max-width: 70%;
+  margin:auto;
+}
+nav{
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background:  #cccbf1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px 0 100px;
+  flex-wrap: wrap;
+}
+nav .logo{
+  color: #3278fa;
+  font-size: 25px;
+  font-weight: 600;
+}
+nav ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+nav ul li{
+  margin: 0 5px;
+}
+nav ul li a{
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+nav ul li a.active,
+nav ul li a:hover{
+  color: #111;
+  background: #fff;
+}
+nav .menu-btn i{
+  color: #3278fa;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+input[type="checkbox"]{
+  display: none;
+}
+
+  
+.basket-qty{
+    color: #fff;
+    background: #d42114;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 11px;
+    height: 15px;
+    width: 14px;
+   
+    box-sizing: content-box;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -15px;
+   
+    right: 0px;
+      
+}
+
+.basket-btn{
+color:#3278fa;
+padding-right: 50px ;
+font-size:1.5rem;
+}
+  
+
+@media (max-width: 1500px){
+  nav{
+    padding: 0 5px 0 30px;
+  }
+  body{
+    max-width: 90%;
+    
+  }
+}
+
+@media (max-width: 1000px){
+  nav{
+    padding: 0 5px 0 5px;
+  }
+  body{
+    max-width: 90%;
+    
+  }
+  .basket-btn{
+  
+    padding-right: 5px ;
+    
+  }
+}
+@media (max-width: 920px) {
+  nav .menu-btn i{
+    display: block;
+  }
+  #click:checked ~ .menu-btn i:before{
+    content: "\f00d";
+  }
+  nav ul{
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    background: #f1b7bd;
+    height: 30vh;
+    width: 50%;
+    text-align: center;
+    display: block;
+    transition: all 0.3s ease;
+    margin-left: 40px;
+  }
+  #click:checked ~ ul{
+    left: 0;
+    z-index: 999;
+  }
+  nav ul li{
+    width: 100%;
+    margin: 40px 0;
+  }
+  nav ul li a{
+    width: 100%;
+    margin-left: -100%;
+    display: block;
+    font-size: 20px;
+    transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  #click:checked ~ ul li a{
+    margin-left: 0px;
+  }
+  nav ul li a.active,
+  nav ul li a:hover{
+    background: none;
+    color: cyan;
+  }
+}
+@media (max-width: 321px) {
+  body{
+    max-width: 95%;
+    
+  }
+}
+
+</style>
+
+   </head>
+   <body>
+      <nav>
+         <div class="logo">
+         
+           <a style='color:rgb(33, 18, 246); font-weight:bold;' href="{% url 'products:product_all' %}">   VRK-Kauppa</a>
+         </div>
+         <input type="checkbox" id="click">
+         <label for="click" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         </label>
+         <ul>
+          <li><a style=' color: white; background-color:#3278fa; ' class="active" href="#">Kirjaudu sisään</a></li>
+            <li><a style='  color: #3278fa;' href="#">Rekisteröidy</a></li>
+            <li><a style='  color: #0e0e0f;'  href="#">Toivelista</a></li>
+        
+         </ul>
+         
+         
+         <a type="button" role="button" href="{% url 'basket:basket_summary' %}" class="basket-btn" >
+          {% with total_qty=basket|length %} <!-- # basket from context_processors.py --> 
+          <div id="basket-qty" class="basket-qty">
+            {% if total_qty > 0 %}
+            {{ total_qty }}
+        {% else %}
+            0
+        {% endif %}
+          
+          </div> {% endwith %} <i class="fas fa-shopping-cart"></i>
+         </a>
+
+      </nav>
+    
+   </body>
+</html>
+
+
+

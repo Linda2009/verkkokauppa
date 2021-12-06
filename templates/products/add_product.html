@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<title>Lisää tuote |... VRK - Kauppa</title>
+
+<style>
+
+    .ui.form>p {
+padding:0;
+margin:0;
+}
+
+    </style>
+
+
+     {% if added_message %}
+        <div class="ui success message">
+            <i class="close icon"></i>
+            <div class="header">
+               {{ added_message }}
+            </div>
+         </div>
+
+     {% endif %}
+
+<h1>Lisää tuote</h1>
+
+ <div style='width:70%; justify-content: center;' class="add_product_area">
+<form  enctype="multipart/form-data" action= "." method="POST" class="ui form"> 
+   {% csrf_token %} 
+   {{ form.as_p }}
+  
+
+  
+ <div class="form-row field-in_stock">
+            
+            
+    <div class="ui checkbox">
+            
+            
+            <input type="checkbox" name="in_stock" id="id_in_stock"><label class="vCheckboxLabel" for="id_in_stock">Varastossa </label>
+            
+            
+    </div>
+    
+</div>
+        
+<div class="form-row field-PRDISNew">
+            
+            
+    <div class="ui checkbox">
+                
+                
+            <input type="checkbox" name="PRDISNew" id="id_PRDISNew"><label class="vCheckboxLabel" for="id_PRDISNew">Uusi tuote </label>
+                
+                
+    </div>
+        
+</div>
+
+<div class="form-row field-PRDISBestSeller">
+            
+            
+    <div class="ui checkbox">
+            
+            
+            <input type="checkbox" name="PRDISBestSeller" id="id_PRDISBestSeller"><label class="vCheckboxLabel" for="id_PRDISBestSeller">Best Seller</label>
+            
+            
+    </div>
+    
+</div> 
+
+
+
+      <div>
+      
+   <button type='submit'class = 'ui positive button mtop'>Lisää tuote</button>    
+       <!-- with this button we are going to submit the form, we add type='submit' -->
+  <a href="{% url 'products:product_all' %}" class='ui positive button mtop' role="button">Takaisin</a><br>
+      </div>
+  
+</form> 
+
+
+</div> 
+
+
+<script>
+    $('.ui.checkbox')
+      .checkbox()
+    ;
+
+
+    $('select.dropdown')
+      .dropdown()
+    ;
+</script>
+ 
+
+
+{% endblock  %}

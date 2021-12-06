@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<title> {{ product|slice:":50" }}... | ... VRK - Kauppa</title>
+
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+      <div class="row wow fadeIn">
+        <div class="col-md-6 mb-4">
+            {% if product.prod_image %}
+            <img class="img-fluid" alt="Responsive image" src="{{product.prod_image.url}}" class="card-img-top"alt="{{ image.image.alt_text }}">
+             {% else %}
+             <img class="default-img" src="media/products/images/default.png" class="card-img-top" alt="">>
+             {% endif %}
+             </div>
+     
+              <!--Grid column-->
+          <div class="col-md-6 mb-4">
+                <!--Content-->
+            <div class="p-4">
+                    <div class="mb-3">
+                            {% if product.discount_percent > 0 %}
+                              <span style='font-size:25px;color:green' class="badge green">SALE</span>
+                            {% endif %}
+                            {% if product.PRDISNew  %}
+                              <span style='font-size:25px;color:blue'class="badge blue">NEW</span>
+                            {% endif %}
+                            {% if product.PRDISBestSeller  %}
+                            <span style='color:#c76112;'class="badge red">Best Seller</span>
+                            {% endif %}
+                       
+                   </div>
+
+                   <p style='font-size:35px;color:rgb(77, 75, 75)'class="lead">{{product}}</p>
+                   <p style='font-size:15; font-weight: 500;color:grey'>{{product.product_code}}</p>
+                   <!-- {{ request.path }} -->
+                   <br> <hr><br>
+                   <p class="lead">
+                   
+                    {% if product.discount_percent > 0 %}
+                    <span  style='font-size: 50px; color:#c76112;' >{{product.cost }} €</span> 
+                    <span style='font-size: 25px;padding-left: 10px;color:rgb(100, 100, 100)'class="mr-1">
+                      <del>{{product.regular_price}}€</del>
+                    </span>
+                 
+                    {% if product.discount_percent > 0 %}
+                    <span style='    border-radius: 20px;
+                    background-color: #c76112;
+                    border: 1px solid #c76112;
+                    color: #fff;
+                    font-weight: 600;
+                    vertical-align: -webkit-baseline-middle;
+                    margin-right: 0;
+                    font-size: 13px;
+                    line-height: 15px;
+                    margin-bottom: 9px;
+                    display: inline-block;
+                    padding: 0.3em 1em; margin-bottom:30px;
+                    font-family: Arial;' class="label label-discount "> - {{product.discount_percent}}%</span>
+                    {% endif %}
+                    {% else %}
+                      <span>{{product.regular_price}} €</span>
+                     
+                    {% endif %}
+                    <section class='section section--delivery-time col-xs-12'>
+                            <span style='background-color:#edc54a;
+                            width: 0.6rem;    display: inline-block;
+                            vertical-align: middle;
+                            border-radius: 50%;
+                            height: 0.6rem;' class='delivery-time__circle out'></span>
+                       
+                            <span style='margin-left:10px;'class="text-muted">Toimitus 1 - 5 arkipäivässä</span> 
+                    
+                        </section>
+                    <div>
+                        <br>
+                  
+                    <p>
+                    </div>
+                   
+            
+                <br>
+                  <div class="col">
+                     <label for="select">Määrä</label>
+                      <input id="select-input"  value="1" type="number" aria-label="Search" class="form-control" style="width: 100px"></input> 
+                 
+                      
+                      <br>
+                      <button type="button" id="add-button" value="{{product.id}}" class="btn btn-success fw500">Lisää ostokoriin</button>
+                      <button type="button" id="add-button" value="{{product.id}}" class="btn btn-light fw500">Lisää toivelistaan </button>
+                    </div>   
+               
+                       <br>
+                       <p style='font-weight: 200; font-size:14px;font-family: Helvetica;line-height: 1.42857143;'>  {{ product.description }}</p>
+                 </div>
+           
+            </div>
+        
+                <div class="col-md-7 col-lg-7 p-0">
+                  <div class="card mb-3 border-0">
+                    <div class="row g-0">
+                      <div class="col-md-12">
+                     
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+           </div>
+  </div>  
+
+</form>
+</main> 
+
+<script>
+    $(document).on('click', '#add-button', function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: '{% url "basket:basket_add" %}',
+        data: {
+          productid: $('#add-button').val(),
+          productqty: $('#select-input').val(),
+          csrfmiddlewaretoken: "{{csrf_token}}",
+          action: 'post'
+        },
+        success: function (json) {
+          document.getElementById("basket-qty").innerHTML = json.qty
+        },
+        error: function (xhr, errmsg, err) {}
+      });
+    })
+  </script>
+
+  {% endblock %}
+  
+
+
+
+
+
+
+
+

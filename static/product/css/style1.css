@@ -1,0 +1,213 @@
+* Required height of parents of the Half Page Carousel for proper displaying carousel itself */
+html,
+body,
+.view {
+  height: 100%; }
+
+/* Half Page Carousel itself*/
+.carousel {
+  height: 50%; }
+  .carousel .carousel-inner {
+    height: 100%; }
+    .carousel .carousel-inner .carousel-item,
+    .carousel .carousel-inner .active {
+      height: 100%; }
+
+/* Adjustment for mobile devices*/
+@media (max-width: 776px) {
+  .carousel {
+    height: 100%; } }
+
+/* Footer color for sake of consistency with Navbar */
+.page-footer {
+  background-color: #929FBA; }
+
+.mynav{
+  margin-top: 5rem ;
+}
+.default-img{ height: 144px; }
+.green{background-color: #00c851!important;}
+
+
+
+
+
+
+.mymodal{
+  height: 400px !important;
+  top: 200px !important;
+  font-size: 20px !important;
+}
+
+.container ul li {
+  margin: 0 0 10px 0; /*clock top, right, botton, left,  10px in the botton */
+}
+
+
+
+.ui.button{
+  width: 200px;
+  border-radius: 0px !important;
+}
+
+.block-center {
+  text-align: center !important;
+}
+
+table.dataframe {
+
+
+
+border-collapse: collapse;
+
+background: #e2e9f8;
+font-family: 'Kenia', cursive;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+-webkit-box-shadow: 0 4px 8px 0 rgba(206, 132, 132, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border-radius: 1rem;
+z-index: 999;
+border: 2px solid rgba(255,255,255,0.2);
+
+}
+
+td, th {
+  border: 2px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+
+}
+tr th{
+    color: black !important; font-size: 30px;font-weight:bold;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+
+}
+
+
+.field-with {
+  width: 100%;
+}
+
+.mtop{
+  margin-top:10px !important;
+}
+
+
+
+
+
+/* profile css --------------------------------------------------------------------------------------------------*/
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+/* css class for the edit profile generated errors */
+
+
+
+.profile_details_area {
+
+}
+
+.profile_details_area h1 {
+  background: #2baa36;
+
+  padding: 2% 0;
+  font-size:calc(15px + 1vw);
+  font-weight: 150px;
+  text-align: center;
+  color: #fff;
+}
+
+ .profile_details_area .container {
+  background: #f0f0f0;
+  padding: 2% 2% ;
+
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+.profile_details_area  label{
+  color: black;
+
+ padding-top: 3%;
+  font-weight:400;
+
+
+
+}
+
+.profile_details_area button {
+  width: 100%;
+  background: #2baa36;
+  border: 0;
+  padding: 1%;
+  font-family: 'Open Sans', sans-serif;
+  font-size:calc(10px + 1vw);
+  color: #fff;
+  justify-content: center;
+  margin: 0 auto;
+  display: block;
+
+
+
+
+}
+
+@media (min-width: 320px)and (max-width: 769px) {
+ .profile_details_area .input-group-append{
+
+  width:27%;
+  height: 10%;
+  font-size: 90%;
+}
+
+}
+
+
+
+/* product_detail.html--product_list.html ----------------------------------------------------------------------*/
+.label.label-discount {
+  color: #000;
+  border-radius: 10px;
+  padding: .0rem 1.2rem;
+  background-color: #c76112;
+  border: 0px solid #c76112;
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  vertical-align: -webkit-baseline-middle;
+  margin-left: 10px;
+  margin-top: 10px;
+
+}
+
+
+
+
+.add_product_area form label{
+  color: black;
+
+ padding-top: 3%;
+  font-weight:400;
+
+
+
+}
+
+.add_product_area form button {
+  width: 100%;
+  background: #2baa36;
+  border: 0;
+  padding: 1%;
+  font-family: 'Open Sans', sans-serif;
+  font-size:calc(10px + 1vw);
+  color: #fff;
+  justify-content: center;
+  margin: 0 auto;
+  display: block;
+
+}
+

@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+@media (min-width: 1000px){
+  .container{
+      max-width: 1600px ;
+      margin:auto;
+      
+      
+  }
+
+
+}
+@media (max-width: 1200px){
+  .container{
+      max-width: 100% ;
+      padding:0 30px;
+  }
+
+}
+
+
+.pt-5 {
+
+ 
+    margin:auto;
+
+   }
+
+
+  img.img-fluid {
+    height: 250px;
+    width: 350px;
+  }
+
+  .default-img {
+
+    height: 250px;
+    width: 350px;
+  }
+
+  .card {
+    width: 350px;
+  }
+
+  .pagination {
+    display: flex;
+    list-style: none;
+  }
+
+  .pagination li {
+    flex: 1;
+    margin: 0px 5px;
+    background: rgb(212, 229, 243);
+    border-radius: 3px;
+    box-shadow: -3px -3px 7px rgb(190, 192, 194), 3px 3px 5px rgb(64, 127, 187);
+  }
+
+  .pagination li a {
+    font-size: 18px;
+    text-decoration: none;
+    color: dodgerblue;
+    height: 45px;
+    width: 55px;
+    display: block;
+    line-height: 45px;
+    font-size: 25px;
+    font-weight: 900;
+    padding-bottom: 3rem;
+  }
+
+  .pagination li:first-child a {
+    width: 120px;
+  }
+
+  .pagination li:last-child a {
+    width: 100px;
+  }
+
+  .pagination li.active {
+    box-shadow: inset -3px -3px 7px rgb(212, 229, 243),
+      inset 3px 3px 5px rgb(64, 127, 187);
+  }
+
+  .pagination li.active a {
+    font-size: 17px;
+    color: rgb(64, 127, 187);
+  }
+
+  .pagination li:first-child {
+    margin: 0 15px 0 0;
+  }
+
+  .pagination li:last-child {
+    margin: 0 0 0 15px;
+  }
+  
+  #categ{
+  
+    margin: 5rem auto 5rem auto;
+  
+  }
+  @media (min-width: 768px)  {
+    .pt-5{
+       
+        padding:0 85px;
+    }
+
+  }
+  @media (min-width: 230px) and (max-width:768px) {
+
+    .card{
+       
+      width: 95%;
+     margin-left:0.7rem;
+   }
+
+ }
+  
+</style>
+
+
+
+
+<div class="container" id='categ' style="max-width: 1000px; ">
+  <div class="col-12">
+    <h1 class="h2">{{ category.name|title }}</h1>
+  </div>
+ 
+  <hr />
+</div>
+<div class="container">
+  <div class="row">
+    <div class="album">
+      {% if not products %}
+      <div class="col-12">Tällä hetkellä ei ole  tuotteita <a href="{% url 'products:product_all' %}">Kaikki</a>
+      </div>
+      {% else %}
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+      
+          {% for product in products %}
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4">
+
+                <!--Card-->
+                <div class="card">
+
+                  <!--Card image-->
+                  <div class="view overlay">
+              
+                    {% if product.prod_image %}
+                    <img class="img-fluid" alt="Responsive image" src="{{product.prod_image.url}}" class="card-img-top"alt="{{ image.image.alt_text }}">
+               
+                  {% else %}
+                  <img class="default-img" src="media/products/images/default.png" class="card-img-top" alt="">>
+                  {% endif %}
+               
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+                  <!--Card image-->
+
+                  <!--Card content-->
+                  <div class="card-body text-center">
+                
+                    <h5>
+                      <strong>
+                        <a href="{{ product.get_absolute_url }}" class="dark-grey-text">{{ product.name|slice:":50" }}...</a>
+                        <br>
+                        <p style='font-weight: 200; font-size:15px'>  {{ product.description|slice:":50" }}...  </p>
+                        <p>
+                          
+                          {% if product.discount_percent > 0 %}
+                            <span style='color:green' class="badge green">SALE</span>
+                          {% endif %}
+                          {% if product.PRDISNew  %}
+                            <span style='color:blue'class="badge blue">NEW</span>
+                          {% endif %}
+                          {% if product.PRDISBestSeller  %}
+                          <span style='color:#c76112;'class="badge red">Best Seller</span>
+                          {% endif %}
+                        </p>
+
+                      </strong>
+                    </h5>
+
+               
+                 
+                    <p class="lead">
+                      {% if product.discount_percent > 0 %}
+                      <span  style='color:#c76112;font-weight: bold;' >{{product.cost}}€ </span> 
+                      <span style='padding-left: 10px;'class="mr-1">
+                        <del>{{product.regular_price}}€</del>
+                      </span>
+                      <br>
+                      {% if product.discount_percent > 0 %}
+                      <span style='    border-radius: 20px;
+                      background-color: #c76112;
+                      border: 1px solid #c76112;
+                      color: #fff;
+                      font-weight: 600;
+                      vertical-align: -webkit-baseline-middle;
+                      margin-right: 0;
+                      font-size: 15px;
+                      line-height: 15px;
+                      margin-bottom: 9px;
+                      display: inline-block;
+                      padding: 0.3em 1em;
+                      font-family: Arial;' class="label label-discount "> - {{product.discount_percent}}%</span>
+                      {% endif %}
+                      {% else %}
+                        <span>{{product.regular_price}} €</span>
+                      {% endif %}
+      
+                    </p>
+                  </div>
+                  <!--Card content-->
+
+                </div>
+                <!--Card-->
+
+              </div>
+              <!--Grid column-->
+            {% endfor %}
+        </div>
+        <!--Grid row-->
+      </section>
+      <!--Section: Products v.3-->
+
+
+    
+      {% if products.has_other_pages %}
+      <!--Pagination-->
+      <nav style='background: transparent;' class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+
+          {% if products.has_previous %}
+          <!--Arrow left-->
+          <li class="page-item ">
+            <a class="page-link" href="?page={{products.previous_page_number}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="page-item disabled"></li>
+          {% endif %}
+
+          {% for pages in products.paginator.page_range %}
+          {% if products.number == pages %}
+          <li class="page-item ">
+            <a style='  font-size: 30px;' class="page-link" href="#">{{pages}}</a>
+          </li>
+          {% else %}
+          <li class="page-item"><a style='  font-size: 20px;' class="page-link current"
+              href="?page={{pages}}">{{pages}}</a></li>
+          {% endif %}
+          {% endfor %}
+
+          {% if products.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{products.next_page_number}}" aria-label="Next">
+              <span style='  font-size: 35px;' aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="page-item disabled"></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <!--Pagination-->
+      {% endif %}
+  
+
+    
+  </div> 
+
+
+
+
+      </ul>
+    </nav>
+    <!--Pagination-->
+
+</div>
+</div>
+{% endif %}
+{% endblock %}

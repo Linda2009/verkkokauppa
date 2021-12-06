@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<title> Rajaa | ... VRK - Kauppa</title>
+<style>
+
+  @media (min-width: 768px) and (max-width:1024px) {
+    
+    .col-md-3{
+ 
+      min-width: 50%;
+
+  }
+  }
+  
+  
+  .container{
+    max-width: 70%;
+    margin: 5rem auto auto auto;
+ 
+  }
+    .card {
+      margin-top: 0;
+      max-width: 90%;
+     
+      display: flex;
+      flex-direction: column;
+     padding:0;
+      height: 100%;
+     
+    }
+   
+  
+    img.img-fluid {
+      height: 150px;
+      width: 250px;
+      margin: 1.4rem auto auto auto;
+    }
+  
+  
+    
+    a.btn {
+    margin: 0 0 20px 0 !important;
+  width: auto;
+    display: inline-block;
+    font-size: calc(1.8px + 0.9vw);
+    line-height: 18px;
+    height: auto;
+    padding: 6px 12px;
+   
+    border: 2px solid transparent;
+    outline: none;
+    text-shadow: none;
+    text-decoration: none;
+    font-weight: normal;
+    box-shadow: 0px 1px 3px #278bdd;
+    letter-spacing: 1px;
+  
+    background-color: #fff;
+    color: black;
+    font-weight: bold;
+    
+    }
+ 
+ 
+
+ h2 {
+      color: #aaa;
+      font-size: 30px;
+      line-height: 40px;
+      font-style: italic;
+      font-weight: 200;
+      margin: 40px;
+      text-align: center;
+      text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
+    }
+
+    .box {
+      background: #fff;
+      border-radius: 2px;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+      margin: 30px 5%;
+      padding: 5%;
+    }
+
+    @media (min-width: 544px) {
+      .box {
+        margin: 40px auto;
+        max-width: 440px;
+        padding: 40px;
+      }
+    }
+
+
+    .directory-list ul {
+      margin-left: 10px;
+      padding-left: 20px;
+      border-left: 1px dashed #ddd;
+    }
+
+    .directory-list li {
+      list-style: none;
+      color: #888;
+      font-size: 17px;
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    .directory-list a {
+      border-bottom: 1px solid transparent;
+      color: #888;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .directory-list a:hover {
+      border-color: #eee;
+      color: #000;
+    }
+
+    .directory-list .folder,
+    .directory-list .folder > a {
+      color: #777;
+      font-weight: bold;
+    }
+
+
+
+  </style>
+  
+ 
+  
+  <div style="margin-bottom:5px"class="container">
+    <div class="row hidden-md-up">
+      {% for c in categories %}
+            <div style="margin-bottom:50px"class="col-md-3">
+                <div style='width: 50rem;' class="card">
+                 
+              
+                  
+                    <div  class="card-body text-center">
+                      <a style='padding:10px;border-radius: 5rem;' class="btn" style='border-radius: 50%;'
+                      href="#"> {{ c.name }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div> 
+
+
+
+{% endblock content %}
