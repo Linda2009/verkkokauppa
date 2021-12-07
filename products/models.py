@@ -61,7 +61,7 @@ class Product(models.Model):
     name = models.CharField(help_text=_("Required"),max_length=255,verbose_name=_("Product Name "))
     description = models.TextField(verbose_name=_("description"), help_text=_("Not Required"), blank=True)
     slug = models.SlugField(verbose_name=_("Product safe URL"),max_length= 300, unique=True,editable=False)
-    discount_percent = models.DecimalField(verbose_name=_("discount percent%"),  max_digits=20 , decimal_places=2,  blank=True)
+    discount_percent = models.DecimalField(verbose_name=_("discount percent%"),  max_digits=20 , decimal_places=2,  blank=True, default=0)
     regular_price = models.DecimalField(verbose_name=_("Regular price"), max_digits=20,decimal_places=2)
     discounted_price = models.DecimalField(verbose_name=_("Discount price"),max_digits=20,decimal_places=2,blank=True,null=True)
     cost = models.DecimalField(max_digits=20 , decimal_places=2 , verbose_name=_("Cost"),blank=True,null=True)
